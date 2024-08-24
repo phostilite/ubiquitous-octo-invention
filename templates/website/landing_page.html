@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,7 +127,7 @@
             <div class="flex justify-between items-center h-24">
                 <div class="flex items-center">
                     <a href="#" class="text-black font-bold text-3xl">
-                        <img src="{{ url_for('static', filename='bds-logo.jpeg') }}" alt="BDS Logo">
+                        <img src="{% static 'images/bds-logo.jpeg' %}" alt="BDS Logo">
                     </a>
                 </div>
                 <div class="hidden md:block">
