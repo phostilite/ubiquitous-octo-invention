@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridges DATA Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000, #0066cc);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #0066cc, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .navbar-item {
+            position: relative;
+        }
+
+        .navbar-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #0066cc;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-item:hover::after {
+            width: 100%;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .service-card-icon {
+            background: linear-gradient(135deg, #0066cc, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-card:hover .service-card-icon {
+            background: linear-gradient(135deg, #000000, #0066cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        .animate-bounce-in {
+            animation: bounceIn 0.6s ease-in-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+    </style>
+    <style>
+        /* Option 1: Solid color with underline */
+        .heading-style-1 {
+            color: #0066cc;
+            border-bottom: 3px solid #0066cc;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+    
+        /* Option 2: Two-tone effect */
+        .heading-style-2 {
+            color: #000000;
+        }
+        .heading-style-2 span {
+            color: #0066cc;
+        }
+    
+        /* Option 3: Gradient background with solid text */
+        .heading-style-3 {
+            background: linear-gradient(135deg, #0066cc, #00ccff);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    
+        /* Option 4: Solid color with accent */
+        .heading-style-4 {
+            color: #000000;
+            border-left: 5px solid #0066cc;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <div class="flex items-center">
+                    <a href="#" class="text-black font-bold text-3xl">
+                        <img src="{{ url_for('static', filename='bds-logo.jpeg') }}" alt="BDS Logo">
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" class="navbar-item text-lg font-medium px-3 py-2 text-blue-600 border-b-2 border-blue-600">Home</a>
+                        <a href="#" class="navbar-item text-black hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Services</a>
+                        <a href="#" class="navbar-item text-black hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">About</a>
+                        <a href="#" class="navbar-item text-black hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="text-black hover:text-blue-600 focus:outline-none focus:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden" id="home">
+        <div class="absolute inset-0">
+            <div id="particles-js"></div>
+        </div>
+        <div class="text-center animate-fade-in relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-2">
+                <span class="inline-block animate-bounce-in">B</span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 0.1s;">r</span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 0.2s;">i</span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 0.3s;">d</span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 0.4s;">g</span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 0.5s;">e</span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 0.6s;">s</span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 0.7s;"> </span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 0.8s;">D</span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 0.9s;">A</span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 1s;">T</span>
+                <span class="inline-block animate-bounce-in" style="animation-delay: 1.1s;">A</span>
+            </h1>
+            <h2 class="text-4xl md:text-5xl font-bold text-blue-300 mb-8 animate-fade-in-up" style="animation-delay: 1.2s;">
+                Services
+            </h2>
+            <p class="text-xl md:text-2xl text-white mb-8 animate-fade-in-up" style="animation-delay: 1.5s;">
+                "Building bridges to data-driven success."
+            </p>
+            <a href="#" class="bg-white hover:bg-blue-100 text-blue-900 font-bold py-3 px-6 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 animate-fade-in-up" style="animation-delay: 1.8s;">
+                Get Started
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </header>
+
+    <section id="about" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 heading-style-4">About Bridges DATA Services</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Welcome to Bridges DATA Services, where data meets innovation and drives excellence. Our mission is to empower organizations by providing cutting-edge data solutions that enable informed decision-making and drive transformative growth.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        We specialize in delivering comprehensive data strategies and modernizing data infrastructures to unlock the full potential of your data. We believe in the power of data to bridge gaps, connect insights, and foster growth.
+                    </p>
+                    <div class="bg-blue-100 border-l-4 border-blue-500 p-4 rounded-lg shadow-md">
+                        <p class="text-blue-700 italic">
+                            "At Bridges DATA Services, we are committed to being your trusted partner in the data journey."
+                        </p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-black to-blue-600 transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+                    <div class="relative bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">Our Expertise</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Seasoned data professionals</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Extensive industry experience</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Innovative and scalable solutions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Tailored to specific needs</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 gradient-bg" id="services">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+                    <div class="p-1 gradient-bg"></div>
+                    <div class="p-8">
+                        <div class="text-4xl text-blue-600 mb-4 service-card-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Data Strategy</h3>
+                        <p class="text-gray-600">We develop comprehensive data strategies aligned with business objectives, ensuring optimal data utilization and ROI.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+                    <div class="p-1 gradient-bg"></div>
+                    <div class="p-8">
+                        <div class="text-4xl text-blue-600 mb-4 service-card-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Data Modernization</h3>
+                        <p class="text-gray-600">We modernize data infrastructures by building robust data lakes, warehouses, and marts for efficient data management.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+                    <div class="p-1 gradient-bg"></div>
+                    <div class="p-8">
+                        <div class="text-4xl text-blue-600 mb-4 service-card-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">BI and Data Analytics</h3>
+                        <p class="text-gray-600">We deliver actionable insights through robust business intelligence, data visualization, and advanced analytics solutions.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+                    <div class="p-1 gradient-bg"></div>
+                    <div class="p-8">
+                        <div class="text-4xl text-blue-600 mb-4 service-card-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">AI and Machine Learning</h3>
+                        <p class="text-gray-600">We leverage AI and machine learning to uncover hidden patterns, build predictive models, and drive innovation.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+                    <div class="p-1 gradient-bg"></div>
+                    <div class="p-8">
+                        <div class="text-4xl text-blue-600 mb-4 service-card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Business Use Case Solutioning</h3>
+                        <p class="text-gray-600">We collaborate with clients to identify critical business challenges and develop tailored solutions.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+                    <div class="p-1 gradient-bg"></div>
+                    <div class="p-8">
+                        <div class="text-4xl text-blue-600 mb-4 service-card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Data Governance</h3>
+                        <p class="text-gray-600">We establish robust data governance frameworks to ensure data quality, security, and compliance across your organization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 heading-style-4">Why Choose Bridges DATA Services?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+                    <div class="p-8">
+                        <div class="text-4xl text-blue-600 mb-4 service-card-icon">
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Unparalleled Expertise</h3>
+                        <p class="text-gray-600">Our team of data scientists and analysts bring years of experience across various industries, ensuring top-notch solutions for your unique challenges.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+                    <div class="p-8">
+                        <div class="text-4xl text-blue-600 mb-4 service-card-icon">
+                            <i class="fa-regular fa-gem"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Tailored Approach</h3>
+                        <p class="text-gray-600">We don't believe in one-size-fits-all. Our solutions are carefully crafted to meet your specific business needs and goals.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+                    <div class="p-8">
+                        <div class="text-4xl text-blue-600 mb-4 service-card-icon">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Cutting-edge Technology</h3>
+                        <p class="text-gray-600">We leverage the latest advancements in data science and AI to give you a competitive edge in your industry.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-16 text-center">
+                <a href="#" class="inline-block gradient-bg text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 hover:from-blue-700 hover:to-blue-900">
+                    Unlock Your Data's Potential
+                    <i class="fas fa-key ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold mb-8 text-white">Ready to Transform Your Data Strategy?</h2>
+                <p class="text-xl text-blue-200 mb-12">Let's collaborate to unlock the full potential of your data and drive your business forward.</p>
+                <a href="#" class="inline-block bg-white hover:bg-blue-100 text-blue-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105">
+                    Get Started Today
+                    <i class="fa-solid fa-rocket ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white" id="contact">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 heading-style-4">Get in Touch</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-100 rounded-xl shadow-lg p-8 transform transition duration-500 hover:scale-105">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-6">Contact Us</h3>
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="company" class="block text-gray-700 font-bold mb-2">Company Name</label>
+                            <input type="text" id="company" name="company" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="company_url" class="block text-gray-700 font-bold mb-2">Company Website</label>
+                            <input type="url" id="company_url" name="company_url" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="https://example.com">
+                        </div>
+                        <div class="mb-4">
+                            <label for="service" class="block text-gray-700 font-bold mb-2">Service Interested In</label>
+                            <select id="service" name="service" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">Select a service</option>
+                                <option value="data_strategy">Data Strategy</option>
+                                <option value="data_modernization">Data Modernization</option>
+                                <option value="bi_analytics">BI and Analytics</option>
+                                <option value="ai_ml">AI and Machine Learning</option>
+                                <option value="use_case_solutioning">Business Use Case Solutioning</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-bold mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full gradient-bg hover:from-blue-700 hover:to-blue-900 text-white font-bold py-3 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+                            Send Message
+                            <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="bg-gray-100 rounded-xl shadow-lg p-8 transform transition duration-500 hover:scale-105">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-6">Why Connect With Us?</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Get expert insights tailored to your business needs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Learn how data can drive your business growth</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Discover innovative solutions to your data challenges</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Stay ahead of the curve with cutting-edge data technologies</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <h4 class="text-xl font-semibold text-blue-800 mb-4">Connect With Us</h4>
+                        <p class="flex items-center text-gray-700 mb-2">
+                            <i class="fas fa-envelope text-yellow-500 mr-4 text-xl"></i>
+                            info@bridgesdata.com
+                        </p>
+                        <p class="text-gray-700 mb-4">We'll get back to you within 24 hours</p>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="text-xl font-semibold text-blue-800 mb-4">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 transition duration-300">
+                                <i class="fab fa-linkedin fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600 transition duration-300">
+                                <i class="fab fa-twitter fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-red-600 hover:text-red-800 transition duration-300">
+                                <i class="fab fa-youtube fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-blue-800 hover:text-blue-900 transition duration-300">
+                                <i class="fab fa-facebook fa-2x"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Bridges DATA Services</h3>
+                    <p class="text-gray-400">Building bridges to data-driven success.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-300 hover:text-blue-400">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Data Strategy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Data Modernization</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">BI and Analytics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">AI and Machine Learning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Data Governance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Stay updated with our latest insights and news.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="flex-grow px-3 py-2 bg-gray-800 text-white rounded-l-md focus:outline-none">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-md transition duration-300 ease-in-out">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">&copy; 2024 Bridges DATA Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
