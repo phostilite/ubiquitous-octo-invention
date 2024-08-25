@@ -143,7 +143,7 @@
     <section class="py-16 px-4 bg-gray-100">
         <div class="container mx-auto max-w-7xl">
             <div class="mb-20 flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 pr-4">
+                <div class="md:w-1/2 mb-8 md:mb-0 pr-4" id="data-strategy">
                     <h2 class="text-3xl font-bold mb-4 service-details">Data Strategy</h2>
                     <p class="service-details">Our data strategy service helps align your data initiatives with your business objectives. We work closely with you to develop a comprehensive plan that maximizes the value of your data assets, ensuring they drive meaningful business outcomes and support your long-term goals.</p>
                 </div>
@@ -152,7 +152,7 @@
                 </div>
             </div>
             <div class="mb-20 flex flex-col md:flex-row-reverse items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 pl-4">
+                <div class="md:w-1/2 mb-8 md:mb-0 pl-4" id="data-modernization">
                     <h2 class="text-3xl font-bold mb-4 service-details">Data Modernization</h2>
                     <p class="service-details">Stay ahead of the curve with our data modernization services. We help you upgrade your existing data infrastructure to leverage cutting-edge technologies, improving performance, scalability, and flexibility. This enables you to handle larger volumes of data more efficiently and extract greater value from your information assets.</p>
                 </div>
@@ -161,7 +161,7 @@
                 </div>
             </div>
             <div class="mb-20 flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 pr-4">
+                <div class="md:w-1/2 mb-8 md:mb-0 pr-4" id="bi-and-analytics">
                     <h2 class="text-3xl font-bold mb-4 service-details">BI and Analytics</h2>
                     <p class="service-details">Transform your raw data into actionable insights with our BI and Analytics services. We implement advanced analytics tools and create custom dashboards that provide real-time visibility into your key business metrics, enabling data-driven decision-making across your organization.</p>
                 </div>
@@ -170,7 +170,7 @@
                 </div>
             </div>
             <div class="mb-20 flex flex-col md:flex-row-reverse items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 pl-4">
+                <div class="md:w-1/2 mb-8 md:mb-0 pl-4" id="ai-and-machine-learning">
                     <h2 class="text-3xl font-bold mb-4 service-details">AI and Machine Learning</h2>
                     <p class="service-details">Harness the power of artificial intelligence and machine learning to drive innovation in your business. Our AI and ML solutions help you automate complex processes, uncover hidden patterns in your data, and make accurate predictions about future trends. From chatbots to predictive maintenance, we tailor AI solutions to your specific needs.</p>
                 </div>
@@ -179,7 +179,7 @@
                 </div>
             </div>
             <div class="mb-20 flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 pr-4">
+                <div class="md:w-1/2 mb-8 md:mb-0 pr-4" id="business-use-case-solutioning">
                     <h2 class="text-3xl font-bold mb-4 service-details">Business Use Case Solutioning</h2>
                     <p class="service-details">Every business faces unique challenges. Our Business Use Case Solutioning service focuses on developing custom data solutions tailored to your specific needs. We work closely with your team to understand your business challenges, then design and implement data-driven solutions that deliver tangible results and competitive advantages.</p>
                 </div>
@@ -188,7 +188,7 @@
                 </div>
             </div>
             <div class="mb-20 flex flex-col md:flex-row-reverse items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 pl-4">
+                <div class="md:w-1/2 mb-8 md:mb-0 pl-4" id="data-governance">
                     <h2 class="text-3xl font-bold mb-4 service-details">Data Governance & Security</h2>
                     <p class="service-details">Protect your valuable data assets and ensure compliance with our Data Governance & Security services. We help you implement robust data governance frameworks, establish data quality standards, and deploy cutting-edge security measures to safeguard your data against threats. Our approach ensures that your data remains accurate, accessible, and secure throughout its lifecycle.</p>
                 </div>
@@ -230,11 +230,12 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Services</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Data Strategy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Data Modernization</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">BI and Analytics</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">AI and Machine Learning</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Data Governance</a></li>
+                        <li><a href="{% url 'services' %}#data-strategy" class="text-gray-400 hover:text-white">Data Strategy</a></li>
+                        <li><a href="{% url 'services' %}#data-modernization" class="text-gray-400 hover:text-white">Data Modernization</a></li>
+                        <li><a href="{% url 'services' %}#bi-and-analytics" class="text-gray-400 hover:text-white">BI and Analytics</a></li>
+                        <li><a href="{% url 'services' %}#ai-and-machine-learning" class="text-gray-400 hover:text-white">AI and Machine Learning</a></li>
+                        <li><a href="{% url 'services' %}#business-use-case-solutioning" class="text-gray-400 hover:text-white">Business Use Case Solutioning</a></li>
+                        <li><a href="{% url 'services' %}#data-governance" class="text-gray-400 hover:text-white">Data Governance</a></li>
                     </ul>
                 </div>
                 <div>
