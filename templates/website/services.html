@@ -1,0 +1,337 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridges DATA Consultancy - Services</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000, #0066cc);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #0066cc, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .navbar-item {
+            position: relative;
+        }
+
+        .navbar-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #0066cc;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-item:hover::after {
+            width: 100%;
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-details {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .service-image {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <div class="flex items-center">
+                    <a href="{% url 'landing_page' %}" class="text-black font-bold text-3xl">
+                        <img src="{% static 'images/bds-logo.jpeg' %}" alt="BDS Logo">
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" class="navbar-item text-black hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Home</a>
+                        <a href="{% url 'services' %}" class="navbar-item text-lg font-medium px-3 py-2 text-blue-600 border-b-2 border-blue-600">Services</a>
+                        <a href="{% url 'about' %}" class="navbar-item text-black hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">About</a>
+                        <a href="{% url 'contact' %}" class="navbar-item text-black hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="text-black hover:text-blue-600 focus:outline-none focus:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="gradient-bg py-20 text-white relative overflow-hidden">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold mb-4" id="header-title">Our Services</h1>
+            <p class="text-xl" id="header-subtitle">Empowering your business with data-driven solutions</p>
+        </div>
+    </header>
+
+    <!-- Services Cards Section -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                    <i class="fas fa-chess text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Data Strategy</h3>
+                    <p>Develop a comprehensive data strategy aligned with your business goals.</p>
+                </div>
+                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                    <i class="fas fa-sync-alt text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Data Modernization</h3>
+                    <p>Upgrade your data infrastructure for improved performance and scalability.</p>
+                </div>
+                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                    <i class="fas fa-chart-bar text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">BI and Analytics</h3>
+                    <p>Transform raw data into actionable insights with advanced analytics tools.</p>
+                </div>
+                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                    <i class="fas fa-robot text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">AI and Machine Learning</h3>
+                    <p>Leverage AI and ML to automate processes and predict future trends.</p>
+                </div>
+                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                    <i class="fas fa-lightbulb text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Business Use Case Solutioning</h3>
+                    <p>Develop custom solutions for your unique business challenges.</p>
+                </div>
+                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                    <i class="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Data Governance & Security</h3>
+                    <p>Implement robust data governance and security measures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details Section -->
+    <section class="py-16 px-4 bg-gray-100">
+        <div class="container mx-auto max-w-7xl">
+            <div class="mb-20 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 pr-4">
+                    <h2 class="text-3xl font-bold mb-4 service-details">Data Strategy</h2>
+                    <p class="service-details">Our data strategy service helps align your data initiatives with your business objectives. We work closely with you to develop a comprehensive plan that maximizes the value of your data assets, ensuring they drive meaningful business outcomes and support your long-term goals.</p>
+                </div>
+                <div class="md:w-1/2 service-image">
+                    <img src="{% static 'images/one.jpg' %}" alt="Data Strategy" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div class="mb-20 flex flex-col md:flex-row-reverse items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 pl-4">
+                    <h2 class="text-3xl font-bold mb-4 service-details">Data Modernization</h2>
+                    <p class="service-details">Stay ahead of the curve with our data modernization services. We help you upgrade your existing data infrastructure to leverage cutting-edge technologies, improving performance, scalability, and flexibility. This enables you to handle larger volumes of data more efficiently and extract greater value from your information assets.</p>
+                </div>
+                <div class="md:w-1/2 service-image">
+                    <img src="{% static 'images/two.jpg' %}" alt="Data Modernization" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div class="mb-20 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 pr-4">
+                    <h2 class="text-3xl font-bold mb-4 service-details">BI and Analytics</h2>
+                    <p class="service-details">Transform your raw data into actionable insights with our BI and Analytics services. We implement advanced analytics tools and create custom dashboards that provide real-time visibility into your key business metrics, enabling data-driven decision-making across your organization.</p>
+                </div>
+                <div class="md:w-1/2 service-image">
+                    <img src="{% static 'images/three.jpg' %}" alt="BI and Analytics" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div class="mb-20 flex flex-col md:flex-row-reverse items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 pl-4">
+                    <h2 class="text-3xl font-bold mb-4 service-details">AI and Machine Learning</h2>
+                    <p class="service-details">Harness the power of artificial intelligence and machine learning to drive innovation in your business. Our AI and ML solutions help you automate complex processes, uncover hidden patterns in your data, and make accurate predictions about future trends. From chatbots to predictive maintenance, we tailor AI solutions to your specific needs.</p>
+                </div>
+                <div class="md:w-1/2 service-image">
+                    <img src="{% static 'images/four.jpg' %}" alt="AI and Machine Learning" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div class="mb-20 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 pr-4">
+                    <h2 class="text-3xl font-bold mb-4 service-details">Business Use Case Solutioning</h2>
+                    <p class="service-details">Every business faces unique challenges. Our Business Use Case Solutioning service focuses on developing custom data solutions tailored to your specific needs. We work closely with your team to understand your business challenges, then design and implement data-driven solutions that deliver tangible results and competitive advantages.</p>
+                </div>
+                <div class="md:w-1/2 service-image">
+                    <img src="{% static 'images/five.jpg' %}" alt="Business Use Case Solutioning" class="rounded-lg shadow-md">
+                </div>
+            </div>
+            <div class="mb-20 flex flex-col md:flex-row-reverse items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 pl-4">
+                    <h2 class="text-3xl font-bold mb-4 service-details">Data Governance & Security</h2>
+                    <p class="service-details">Protect your valuable data assets and ensure compliance with our Data Governance & Security services. We help you implement robust data governance frameworks, establish data quality standards, and deploy cutting-edge security measures to safeguard your data against threats. Our approach ensures that your data remains accurate, accessible, and secure throughout its lifecycle.</p>
+                </div>
+                <div class="md:w-1/2 service-image">
+                    <img src="{% static 'images/six.jpg' %}" alt="Data Governance & Security" class="rounded-lg shadow-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="bg-blue-600 text-white py-16 px-4">
+        <div class="container mx-auto max-w-7xl text-center">
+            <h2 class="text-3xl font-bold mb-4" id="cta-title">Embark on Your Data-Driven Transformation</h2>
+            <p class="text-xl mb-8" id="cta-subtitle">Discover how Bridges DATA Consultancy can revolutionize your business with cutting-edge data solutions. Unlock Your Data Journey</p>
+            <a href="{% url 'get_started' %}" class="bg-white text-blue-600 py-2 px-6 rounded-full font-semibold text-lg hover:bg-blue-100 transition duration-300 inline-flex items-center">
+                <span>Get Started</span>
+                <i class="fas fa-rocket ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Bridges DATA Services</h3>
+                    <p class="text-gray-400">Building bridges to data-driven success.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="{% url 'landing_page' %}" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="{% url 'services' %}" class="text-blue-300 hover:text-blue-400">Services</a></li>
+                        <li><a href="{% url 'about' %}" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="{% url 'contact' %}" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Data Strategy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Data Modernization</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">BI and Analytics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">AI and Machine Learning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Data Governance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Stay updated with our latest insights and news.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="flex-grow px-3 py-2 bg-gray-800 text-white rounded-l-md focus:outline-none">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-md transition duration-300 ease-in-out">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">&copy; 2024 Bridges DATA Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Anime.js animations (unchanged)
+        anime({
+            targets: '#header-title',
+            opacity: [0, 1],
+            translateY: [50, 0],
+            duration: 1000,
+            easing: 'easeOutQuad'
+        });
+
+        anime({
+            targets: '#header-subtitle',
+            opacity: [0, 1],
+            translateY: [30, 0],
+            duration: 1000,
+            delay: 300,
+            easing: 'easeOutQuad'
+        });
+
+        anime({
+            targets: '.service-card',
+            opacity: [0, 1],
+            translateY: [50, 0],
+            duration: 800,
+            delay: anime.stagger(100),
+            easing: 'easeOutQuad'
+        });
+
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    anime({
+                        targets: entry.target.querySelectorAll('.service-details'),
+                        opacity: [0, 1],
+                        translateY: [20, 0],
+                        duration: 800,
+                        delay: anime.stagger(200),
+                        easing: 'easeOutQuad'
+                    });
+
+                    anime({
+                        targets: entry.target.querySelector('.service-image'),
+                        opacity: [0, 1],
+                        translateX: [20, 0],
+                        duration: 800,
+                        delay: 400,
+                        easing: 'easeOutQuad'
+                    });
+
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.container > div').forEach(el => {
+            observer.observe(el);
+        });
+
+        anime({
+            targets: '#cta-title',
+            opacity: [0, 1],
+            translateY: [30, 0],
+            duration: 1000,
+            easing: 'easeOutQuad'
+        });
+
+        anime({
+            targets: '#cta-subtitle',
+            opacity: [0, 1],
+            translateY: [20, 0],
+            duration: 1000,
+            delay: 300,
+            easing: 'easeOutQuad'
+        });
+    </script>
+</body>
+</html>

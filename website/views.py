@@ -6,6 +6,9 @@ def landing_page(request):
 def about(request):
     return render(request, 'website/about.html')
 
+def services(request):
+    return render(request, 'website/services.html')
+
 def contact(request):
     return render(request, 'website/contact.html')
 
