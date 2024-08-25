@@ -8,3 +8,6 @@ def about(request):
 
 def contact(request):
     return render(request, 'website/contact.html')
+
+def unleash_data(request):
+    return render(request, 'website/unleash_data.html')
