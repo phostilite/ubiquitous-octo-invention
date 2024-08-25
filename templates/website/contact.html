@@ -146,7 +146,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
                 <div class="flex items-center">
-                    <a href="#" class="text-black font-bold text-3xl">
+                    <a href="{% url 'landing_page' %}" class="text-black font-bold text-3xl">
                         <img src="{% static 'images/bds-logo.jpeg' %}" alt="BDS Logo">
                     </a>
                 </div>
@@ -239,10 +239,10 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="{% url 'landing_page' %}" class="text-gray-400 hover:text-white">Home</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Services</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="#" class="text-blue-300 hover:text-blue-400">Contact</a></li>
+                        <li><a href="{% url 'about' %}" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="{% url 'contact' %}" class="text-blue-300 hover:text-blue-400">Contact</a></li>
                     </ul>
                 </div>
                 <div>
