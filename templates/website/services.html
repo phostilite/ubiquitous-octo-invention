@@ -7,6 +7,8 @@
     <title>Bridges DATA Consultancy - Services</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.css" rel="stylesheet" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
@@ -105,32 +107,32 @@
     <section class="py-16 px-4">
         <div class="container mx-auto max-w-7xl">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                <div class="service-card bg-white rounded-lg shadow-md p-6" data-popover-target="popover-data-strategy">
                     <i class="fas fa-chess text-4xl text-blue-600 mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">Data Strategy</h3>
                     <p>Develop a comprehensive data strategy aligned with your business goals.</p>
                 </div>
-                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                <div class="service-card bg-white rounded-lg shadow-md p-6" data-popover-target="popover-data-modernization">
                     <i class="fas fa-sync-alt text-4xl text-blue-600 mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">Data Modernization</h3>
                     <p>Upgrade your data infrastructure for improved performance and scalability.</p>
                 </div>
-                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                <div class="service-card bg-white rounded-lg shadow-md p-6" data-popover-target="popover-bi-and-analytics">
                     <i class="fas fa-chart-bar text-4xl text-blue-600 mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">BI and Analytics</h3>
                     <p>Transform raw data into actionable insights with advanced analytics tools.</p>
                 </div>
-                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                <div class="service-card bg-white rounded-lg shadow-md p-6" data-popover-target="popover-ai-ml">
                     <i class="fas fa-robot text-4xl text-blue-600 mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">AI and Machine Learning</h3>
                     <p>Leverage AI and ML to automate processes and predict future trends.</p>
                 </div>
-                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                <div class="service-card bg-white rounded-lg shadow-md p-6" data-popover-target="popover-business-use-case">
                     <i class="fas fa-lightbulb text-4xl text-blue-600 mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">Business Use Case Solutioning</h3>
                     <p>Develop custom solutions for your unique business challenges.</p>
                 </div>
-                <div class="service-card bg-white rounded-lg shadow-md p-6">
+                <div class="service-card bg-white rounded-lg shadow-md p-6" data-popover-target="popover-data-governance-security">
                     <i class="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">Data Governance & Security</h3>
                     <p>Implement robust data governance and security measures.</p>
@@ -138,6 +140,90 @@
             </div>
         </div>
     </section>
+
+ <!-- Data Strategy Popover -->
+<div data-popover id="popover-data-strategy" role="tooltip" class="absolute z-10 invisible inline-block w-96 text-sm transition-opacity duration-300 bg-white border border-blue-200 rounded-lg shadow-lg opacity-0">
+    <div class="px-3 py-2 bg-blue-100 border-b border-blue-200 rounded-t-lg">
+        <h3 class="font-semibold text-blue-800">Data Strategy</h3>
+    </div>
+    <div class="px-3 py-2">
+        <p class="mb-3">Elevate your business with a comprehensive data strategy that transforms information into a strategic asset. Our approach ensures your data initiatives drive tangible business value.</p>
+        <p class="mb-2"><i class="fas fa-bullseye text-blue-600 mr-2"></i> Align data initiatives with business goals</p>
+        <p class="mb-2"><i class="fas fa-route text-blue-600 mr-2"></i> Create roadmaps for data-driven success</p>
+        <p><i class="fas fa-chart-line text-blue-600 mr-2"></i> Maximize ROI from your data assets</p>
+    </div>
+    <div data-popper-arrow></div>
+</div>
+
+<!-- Data Modernization Popover -->
+<div data-popover id="popover-data-modernization" role="tooltip" class="absolute z-10 invisible inline-block w-96 text-sm transition-opacity duration-300 bg-white border border-blue-200 rounded-lg shadow-lg opacity-0">
+    <div class="px-3 py-2 bg-blue-100 border-b border-blue-200 rounded-t-lg">
+        <h3 class="font-semibold text-blue-800">Data Modernization</h3>
+    </div>
+    <div class="px-3 py-2">
+        <p class="mb-3">Revolutionize your data infrastructure to meet the demands of the digital age. Our data modernization services empower your organization with cutting-edge technologies and architectures.</p>
+        <p class="mb-2"><i class="fas fa-rocket text-blue-600 mr-2"></i> Boost performance and scalability</p>
+        <p class="mb-2"><i class="fas fa-cloud text-blue-600 mr-2"></i> Leverage cloud-native technologies</p>
+        <p><i class="fas fa-database text-blue-600 mr-2"></i> Streamline data architecture</p>
+    </div>
+    <div data-popper-arrow></div>
+</div>
+
+<!-- BI and Analytics Popover -->
+<div data-popover id="popover-bi-and-analytics" role="tooltip" class="absolute z-10 invisible inline-block w-96 text-sm transition-opacity duration-300 bg-white border border-blue-200 rounded-lg shadow-lg opacity-0">
+    <div class="px-3 py-2 bg-blue-100 border-b border-blue-200 rounded-t-lg">
+        <h3 class="font-semibold text-blue-800">BI and Analytics</h3>
+    </div>
+    <div class="px-3 py-2">
+        <p class="mb-3">Unlock the power of your data with our advanced BI and analytics solutions. We transform raw information into actionable insights, enabling data-driven decision-making across your organization.</p>
+        <p class="mb-2"><i class="fas fa-chart-pie text-blue-600 mr-2"></i> Transform raw data into insights</p>
+        <p class="mb-2"><i class="fas fa-tachometer-alt text-blue-600 mr-2"></i> Create dynamic dashboards</p>
+        <p><i class="fas fa-lightbulb text-blue-600 mr-2"></i> Enable data-driven decision making</p>
+    </div>
+    <div data-popper-arrow></div>
+</div>
+
+<!-- AI and Machine Learning Popover -->
+<div data-popover id="popover-ai-ml" role="tooltip" class="absolute z-10 invisible inline-block w-96 text-sm transition-opacity duration-300 bg-white border border-blue-200 rounded-lg shadow-lg opacity-0">
+    <div class="px-3 py-2 bg-blue-100 border-b border-blue-200 rounded-t-lg">
+        <h3 class="font-semibold text-blue-800">AI and Machine Learning</h3>
+    </div>
+    <div class="px-3 py-2">
+        <p class="mb-3">Harness the transformative power of AI and machine learning to gain a competitive edge. Our solutions automate processes, uncover hidden patterns, and provide predictive insights to drive your business forward.</p>
+        <p class="mb-2"><i class="fas fa-brain text-blue-600 mr-2"></i> Implement intelligent automation</p>
+        <p class="mb-2"><i class="fas fa-crystal-ball text-blue-600 mr-2"></i> Predict future trends</p>
+        <p><i class="fas fa-robot text-blue-600 mr-2"></i> Enhance decision-making processes</p>
+    </div>
+    <div data-popper-arrow></div>
+</div>
+
+<!-- Business Use Case Solutioning Popover -->
+<div data-popover id="popover-business-use-case" role="tooltip" class="absolute z-10 invisible inline-block w-96 text-sm transition-opacity duration-300 bg-white border border-blue-200 rounded-lg shadow-lg opacity-0">
+    <div class="px-3 py-2 bg-blue-100 border-b border-blue-200 rounded-t-lg">
+        <h3 class="font-semibold text-blue-800">Business Use Case Solutioning</h3>
+    </div>
+    <div class="px-3 py-2">
+        <p class="mb-3">Every business is unique, and so are its challenges. Our tailored solutions address your specific use cases, leveraging data and technology to overcome obstacles and drive growth.</p>
+        <p class="mb-2"><i class="fas fa-puzzle-piece text-blue-600 mr-2"></i> Tailor solutions to your needs</p>
+        <p class="mb-2"><i class="fas fa-bullseye text-blue-600 mr-2"></i> Address specific business challenges</p>
+        <p><i class="fas fa-handshake text-blue-600 mr-2"></i> Drive tangible business outcomes</p>
+    </div>
+    <div data-popper-arrow></div>
+</div>
+
+<!-- Data Governance & Security Popover -->
+<div data-popover id="popover-data-governance-security" role="tooltip" class="absolute z-10 invisible inline-block w-96 text-sm transition-opacity duration-300 bg-white border border-blue-200 rounded-lg shadow-lg opacity-0">
+    <div class="px-3 py-2 bg-blue-100 border-b border-blue-200 rounded-t-lg">
+        <h3 class="font-semibold text-blue-800">Data Governance & Security</h3>
+    </div>
+    <div class="px-3 py-2">
+        <p class="mb-3">Safeguard your most valuable asset - your data. Our comprehensive data governance and security solutions ensure regulatory compliance, protect against threats, and maintain the integrity of your information.</p>
+        <p class="mb-2"><i class="fas fa-shield-alt text-blue-600 mr-2"></i> Protect valuable data assets</p>
+        <p class="mb-2"><i class="fas fa-balance-scale text-blue-600 mr-2"></i> Ensure regulatory compliance</p>
+        <p><i class="fas fa-lock text-blue-600 mr-2"></i> Implement robust security measures</p>
+    </div>
+    <div data-popper-arrow></div>
+</div>
 
     <!-- Service Details Section -->
     <section class="py-16 px-4 bg-gray-100">
@@ -254,6 +340,9 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+
 
     <script>
         // Anime.js animations (unchanged)
