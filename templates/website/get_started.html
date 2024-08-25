@@ -1,0 +1,335 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridges DATA Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000, #0066cc);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #0066cc, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .navbar-item {
+            position: relative;
+        }
+
+        .navbar-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #0066cc;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-item:hover::after {
+            width: 100%;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .service-card-icon {
+            background: linear-gradient(135deg, #0066cc, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-card:hover .service-card-icon {
+            background: linear-gradient(135deg, #000000, #0066cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        .animate-bounce-in {
+            animation: bounceIn 0.6s ease-in-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+    </style>
+    <style>
+        /* Option 1: Solid color with underline */
+        .heading-style-1 {
+            color: #0066cc;
+            border-bottom: 3px solid #0066cc;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+    
+        /* Option 2: Two-tone effect */
+        .heading-style-2 {
+            color: #000000;
+        }
+        .heading-style-2 span {
+            color: #0066cc;
+        }
+    
+        /* Option 3: Gradient background with solid text */
+        .heading-style-3 {
+            background: linear-gradient(135deg, #0066cc, #00ccff);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    
+        /* Option 4: Solid color with accent */
+        .heading-style-4 {
+            color: #000000;
+            border-left: 5px solid #0066cc;
+            padding-left: 15px;
+        }
+    </style>
+    <style>
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+        </style>
+</head>
+<body class="bg-white">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <div class="flex items-center">
+                    <a href="#" class="text-black font-bold text-3xl">
+                        <img src="{% static 'images/bds-logo.jpeg' %}" alt="BDS Logo">
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="{% url 'landing_page' %}" class="navbar-item text-black hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Home</a>
+                        <a href="#" class="navbar-item text-black hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Services</a>
+                        <a href="{% url 'about' %}" class="navbar-item text-black hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">About</a>
+                        <a href="{% url 'contact' %}" class="navbar-item text-black hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="text-black hover:text-blue-600 focus:outline-none focus:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+
+    <main class="w-full px-4 sm:px-6 lg:px-8 py-16 gradient-bg relative overflow-hidden">
+        <div class="container mx-auto max-w-7xl">
+        <h1 class="text-4xl font-bold text-center mb-12 text-gradient animate-fade-in-up">Get Started with Bridges DATA</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div class="bg-white rounded-xl shadow-lg p-8 animate-fade-in-up card-hover flex flex-col justify-between" style="animation-delay: 0.2s;">
+                <div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Get in Touch</h2>
+                    <p class="text-gray-600 mb-4">Speak with our data experts to discuss your unique challenges and goals. We're here to help you transform your data strategy.</p>
+                    <ul class="text-gray-600 mb-6 space-y-2">
+                        <li><i class="fas fa-envelope text-blue-500 mr-2"></i>Email: info@bridgesdata.in</li>
+                    </ul>
+                </div>
+                <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 text-center">
+                    Contact Us
+                    <i class="fas fa-envelope ml-2"></i>
+                </a>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-8 animate-fade-in-up card-hover flex flex-col justify-between" style="animation-delay: 0.4s;">
+                <div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Why Choose Bridges DATA?</h2>
+                    <ul class="text-gray-600 mb-6 space-y-2">
+                        <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Expert team with years of industry experience</li>
+                        <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Tailored solutions to meet your specific needs</li>
+                        <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Cutting-edge technology and methodologies</li>
+                        <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Proven track record of successful implementations</li>
+                        <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Ongoing support and maintenance</li>
+                        <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Flexible engagement models</li>
+                    </ul>
+                </div>
+                <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 text-center">
+                    Learn More
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-16 animate-fade-in-up" style="animation-delay: 0.6s;">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Our Process</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl text-blue-600 mb-4 animate-float" style="animation-delay: 0.2s;">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Discover</h3>
+                    <p class="text-gray-600">Understand your data landscape and business objectives</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl text-blue-600 mb-4 animate-float" style="animation-delay: 0.4s;">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Analyze</h3>
+                    <p class="text-gray-600">Dive deep into your data to uncover insights and opportunities</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl text-blue-600 mb-4 animate-float" style="animation-delay: 0.6s;">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Implement</h3>
+                    <p class="text-gray-600">Deploy tailored data solutions to drive your business forward</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl text-blue-600 mb-4 animate-float" style="animation-delay: 0.8s;">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Optimize</h3>
+                    <p class="text-gray-600">Continuously refine and improve your data strategy</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg p-8 animate-fade-in-up" style="animation-delay: 0.8s;">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Ready to Transform Your Data Strategy?</h2>
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div>
+                    <label for="company" class="block text-gray-700 font-bold mb-2">Company</label>
+                    <input type="text" id="company" name="company" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div>
+                    <label for="industry" class="block text-gray-700 font-bold mb-2">Industry</label>
+                    <select id="industry" name="industry" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <option value="">Select an industry</option>
+                        <option value="finance">Finance</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="retail">Retail</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="energy">Energy</option>
+                        <option value="telecom">Telecommunications</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="md:col-span-2">
+                    <label for="message" class="block text-gray-700 font-bold mb-2">How can we help you?</label>
+                    <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                </div>
+                <div class="md:col-span-2 text-center">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+                        Start Your Data Journey
+                        <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </main>
+
+    
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Bridges DATA Services</h3>
+                    <p class="text-gray-400">Building bridges to data-driven success.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Data Strategy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Data Modernization</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">BI and Analytics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">AI and Machine Learning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Data Governance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Stay updated with our latest insights and news.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="flex-grow px-3 py-2 bg-gray-800 text-white rounded-l-md focus:outline-none">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-md transition duration-300 ease-in-out">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">&copy; 2024 Bridges DATA Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</body>
+</html>

@@ -11,3 +11,6 @@ def contact(request):
 
 def unleash_data(request):
     return render(request, 'website/unleash_data.html')
+
+def get_started(request):
+    return render(request, 'website/get_started.html')
