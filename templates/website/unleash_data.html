@@ -139,49 +139,49 @@
         .animation-delay-4000 {
             animation-delay: 4s;
         }
-        /* New styles for the acknowledgment popup */
-        .acknowledgment-popup {
+        /* New styles for the animated rocket acknowledgment */
+        .rocket-acknowledgment {
             display: none;
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .rocket {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39C21.61 2.39 16.66 .269 11 5.93C8.81 8.12 7.5 10.53 6.65 12.64C6.37 13.39 6.56 14.21 7.11 14.77L9.24 16.89C9.79 17.45 10.61 17.63 11.36 17.35C13.5 16.53 15.88 15.19 18.07 13C23.73 7.34 21.61 2.39 21.61 2.39M14.54 9.46C13.76 8.68 13.76 7.41 14.54 6.63S16.59 5.85 17.37 6.63C18.14 7.41 18.15 8.68 17.37 9.46C16.59 10.24 15.32 10.24 14.54 9.46M8.88 16.53L7.47 15.12L8.88 16.53M6.24 22L14.24 22 13.24 20 7.24 20 6.24 22Z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(45deg);
+            opacity: 0;
+        }
+
+        .rocket-trail {
+            position: absolute;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(to right, #ff6b6b, #feca57, #48dbfb);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .acknowledgment-text {
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            text-align: center;
-        }
-
-        .acknowledgment-popup i {
-            font-size: 48px;
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-
-        .acknowledgment-popup h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .acknowledgment-popup p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        .acknowledgment-popup button {
-            background-color: #4CAF50;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .acknowledgment-popup button:hover {
-            background-color: #45a049;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
         }
         </style>
 </head>
@@ -297,12 +297,11 @@
         </div>
     </main>
 
-    <!-- Acknowledgment Popup -->
-    <div id="acknowledgmentPopup" class="acknowledgment-popup">
-        <i class="fas fa-check-circle"></i>
-        <h3>Thank You for Joining the Data Revolution!</h3>
-        <p>We've received your information and will be in touch soon to begin your data odyssey.</p>
-        <button onclick="closeAcknowledgment()">Got it!</button>
+    <!-- Animated Rocket Acknowledgment -->
+    <div id="rocketAcknowledgment" class="rocket-acknowledgment">
+        <div class="rocket"></div>
+        <div class="rocket-trail"></div>
+        <div class="acknowledgment-text">Data Revolution Ignited!</div>
     </div>
 
     
@@ -355,14 +354,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('dataRevolutionForm');
-            const popup = document.getElementById('acknowledgmentPopup');
-            let popupTimeout;
+            const acknowledgment = document.getElementById('rocketAcknowledgment');
+            const rocket = acknowledgment.querySelector('.rocket');
+            const trail = acknowledgment.querySelector('.rocket-trail');
+            const text = acknowledgment.querySelector('.acknowledgment-text');
 
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 if (form.checkValidity()) {
-                    // Form is valid, show the acknowledgment popup
-                    showAcknowledgment();
+                    // Form is valid, show the animated acknowledgment
+                    showRocketAcknowledgment();
                     // Reset the form
                     form.reset();
                 } else {
@@ -372,20 +373,48 @@
             });
         });
 
-        function showAcknowledgment() {
-            const popup = document.getElementById('acknowledgmentPopup');
-            popup.style.display = 'block';
-            
-            // Set a timeout to close the popup after 5 seconds
-            popupTimeout = setTimeout(closeAcknowledgment, 5000);
-        }
+        function showRocketAcknowledgment() {
+            const acknowledgment = document.getElementById('rocketAcknowledgment');
+            const rocket = acknowledgment.querySelector('.rocket');
+            const trail = acknowledgment.querySelector('.rocket-trail');
+            const text = acknowledgment.querySelector('.acknowledgment-text');
 
-        function closeAcknowledgment() {
-            const popup = document.getElementById('acknowledgmentPopup');
-            popup.style.display = 'none';
-            
-            // Clear the timeout to prevent any pending closures
-            clearTimeout(popupTimeout);
+            acknowledgment.style.display = 'block';
+
+            // Animate the rocket
+            rocket.animate([
+                { left: '-100px', opacity: 0 },
+                { left: '0', opacity: 1, offset: 0.1 },
+                { left: 'calc(100% + 100px)', opacity: 0 }
+            ], {
+                duration: 3000,
+                easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)'
+            });
+
+            // Animate the trail
+            trail.animate([
+                { width: '0' },
+                { width: '100%' }
+            ], {
+                duration: 3000,
+                easing: 'linear'
+            });
+
+            // Animate the text
+            text.animate([
+                { opacity: 0, transform: 'translate(-50%, -50%) scale(0.8)' },
+                { opacity: 1, transform: 'translate(-50%, -50%) scale(1)', offset: 0.2 },
+                { opacity: 1, transform: 'translate(-50%, -50%) scale(1)', offset: 0.8 },
+                { opacity: 0, transform: 'translate(-50%, -50%) scale(1.2)' }
+            ], {
+                duration: 3000,
+                easing: 'ease-in-out'
+            });
+
+            // Hide the acknowledgment after the animation
+            setTimeout(() => {
+                acknowledgment.style.display = 'none';
+            }, 3000);
         }
     </script>
 </body>
