@@ -183,6 +183,35 @@
         .animation-delay-4000 {
             animation-delay: 4s;
         }
+        /* New styles for the subscribe acknowledgment */
+        .subscribe-form {
+            position: relative;
+        }
+
+        .subscribe-acknowledgment {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 0 0 5px 5px;
+            font-size: 14px;
+            animation: slideDown 0.3s ease-out, fadeOut 0.3s ease-in 2.7s;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
         </style>
 </head>
 <body class="bg-white">
@@ -312,11 +341,14 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
                     <p class="text-gray-400 mb-4">Stay updated with our latest insights and news.</p>
-                    <form class="flex">
-                        <input type="email" placeholder="Your email" class="flex-grow px-3 py-2 bg-gray-800 text-white rounded-l-md focus:outline-none">
+                    <form id="subscribeForm" class="subscribe-form flex flex-col sm:flex-row">
+                        <input type="email" placeholder="Your email" class="flex-grow px-3 py-2 bg-gray-800 text-white rounded-l-md focus:outline-none mb-2 sm:mb-0" required>
                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-md transition duration-300 ease-in-out">
                             Subscribe
                         </button>
+                        <div id="subscribeAcknowledgment" class="subscribe-acknowledgment">
+                            Thanks for subscribing!
+                        </div>
                     </form>
                 </div>
             </div>
@@ -362,6 +394,32 @@
             
             // Clear the timeout to prevent any pending closures
             clearTimeout(popupTimeout);
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const subscribeForm = document.getElementById('subscribeForm');
+            const subscribeAcknowledgment = document.getElementById('subscribeAcknowledgment');
+
+            subscribeForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (subscribeForm.checkValidity()) {
+                    showSubscribeAcknowledgment();
+                    subscribeForm.reset();
+                } else {
+                    subscribeForm.reportValidity();
+                }
+            });
+        });
+
+        function showSubscribeAcknowledgment() {
+            const acknowledgment = document.getElementById('subscribeAcknowledgment');
+            acknowledgment.style.display = 'block';
+            
+            // Hide the acknowledgment after 3 seconds
+            setTimeout(() => {
+                acknowledgment.style.display = 'none';
+            }, 3000);
         }
     </script>
 </body>
