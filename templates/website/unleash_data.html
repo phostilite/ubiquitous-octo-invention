@@ -86,60 +86,7 @@
             animation: fadeInUp 0.6s ease-out;
             animation-fill-mode: both;
         }
-    </style>
-    <style>
-        /* Option 1: Solid color with underline */
-        .heading-style-1 {
-            color: #0066cc;
-            border-bottom: 3px solid #0066cc;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-    
-        /* Option 2: Two-tone effect */
-        .heading-style-2 {
-            color: #000000;
-        }
-        .heading-style-2 span {
-            color: #0066cc;
-        }
-    
-        /* Option 3: Gradient background with solid text */
-        .heading-style-3 {
-            background: linear-gradient(135deg, #0066cc, #00ccff);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-    
-        /* Option 4: Solid color with accent */
-        .heading-style-4 {
-            color: #000000;
-            border-left: 5px solid #0066cc;
-            padding-left: 15px;
-        }
-    </style>
-    <style>
-        @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
-        }
-        
-        .animate-blob {
-            animation: blob 7s infinite;
-        }
-        
-        .animation-delay-2000 {
-            animation-delay: 2s;
-        }
-        
-        .animation-delay-4000 {
-            animation-delay: 4s;
-        }
-        /* New styles for the animated rocket acknowledgment */
+
         .rocket-acknowledgment {
             display: none;
             position: fixed;
@@ -183,7 +130,7 @@
             text-align: center;
             opacity: 0;
         }
-        /* New styles for the subscribe acknowledgment */
+
         .subscribe-form {
             position: relative;
         }
@@ -212,14 +159,14 @@
             from { opacity: 1; }
             to { opacity: 0; }
         }
-        </style>
+    </style>
 </head>
 <body class="bg-white">
     <nav class="bg-white shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
                 <div class="flex items-center">
-                    <a href="{% url 'landing_page' %}" class="text-black font-bold text-3xl">
+                    <a href="#" class="text-black font-bold text-3xl">
                         <img src="{% static 'images/bds-logo.jpeg' %}" alt="BDS Logo">
                     </a>
                 </div>
@@ -249,13 +196,12 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Left Column: Engagement Form -->
             <div class="bg-white shadow-lg rounded-lg p-8 animate-fade-in card-hover">
                 <h2 class="text-3xl font-bold mb-6 text-blue-800">Ignite Your Data Revolution</h2>
-                <form id="dataRevolutionForm">
+                <form id="dataRevolutionForm" method="POST" action="{% url 'submit_form' %}">
+                    {% csrf_token %}
                     <div class="mb-4">
                         <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>
                         <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
@@ -283,9 +229,7 @@
                 </form>
             </div>
 
-            <!-- Right Column: Inspirational Content -->
             <div class="space-y-8">
-                <!-- Why Choose Us -->
                 <div class="bg-white shadow-lg rounded-lg p-8 animate-fade-in card-hover">
                     <h2 class="text-3xl font-bold mb-6 text-blue-800">Why Embark with Bridges DATA?</h2>
                     <ul class="space-y-4">
@@ -307,26 +251,15 @@
                         </li>
                     </ul>
                 </div>
-
-                <!-- Testimonial -->
-                <div class="bg-white shadow-lg rounded-lg p-8 animate-fade-in card-hover">
-                    <h2 class="text-3xl font-bold mb-6 text-blue-800">Voices of Transformation</h2>
-                    <blockquote class="text-xl italic text-gray-800 mb-4">
-                        "Bridges DATA didn't just analyze our data; they unlocked a universe of possibilities we never knew existed. Our business will never be the same – in the best way possible!"
-                    </blockquote>
-                    <p class="font-semibold text-gray-600">- Alex Morgan, CEO of FutureNow Enterprises</p>
-                </div>
             </div>
         </div>
     </main>
 
-    <!-- Animated Rocket Acknowledgment -->
     <div id="rocketAcknowledgment" class="rocket-acknowledgment">
         <div class="rocket"></div>
         <div class="rocket-trail"></div>
         <div class="acknowledgment-text">Data Revolution Ignited!</div>
     </div>
-
     
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -374,40 +307,58 @@
             </div>
         </div>
     </footer>
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('dataRevolutionForm');
             const acknowledgment = document.getElementById('rocketAcknowledgment');
-            const rocket = acknowledgment.querySelector('.rocket');
-            const trail = acknowledgment.querySelector('.rocket-trail');
-            const text = acknowledgment.querySelector('.acknowledgment-text');
-
+    
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
+                console.log('Form submit event triggered');
                 if (form.checkValidity()) {
-                    // Form is valid, show the animated acknowledgment
-                    showRocketAcknowledgment();
-                    // Reset the form
-                    form.reset();
+                    console.log('Form is valid, submitting via AJAX');
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+                        headers: {
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        console.log('Response status:', response.status);
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            showRocketAcknowledgment();
+                            form.reset();
+                        } else {
+                            alert('There was an error submitting the form: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('There was an error submitting the form. Please try again.');
+                    });
                 } else {
-                    // Form is invalid, trigger browser's default validation UI
+                    console.log('Form is invalid');
                     form.reportValidity();
                 }
             });
         });
-
+    
         function showRocketAcknowledgment() {
             const acknowledgment = document.getElementById('rocketAcknowledgment');
             const rocket = acknowledgment.querySelector('.rocket');
             const trail = acknowledgment.querySelector('.rocket-trail');
             const text = acknowledgment.querySelector('.acknowledgment-text');
-
+    
             acknowledgment.style.display = 'block';
-
-            // Animate the rocket
+    
             rocket.animate([
                 { left: '-100px', opacity: 0 },
                 { left: '0', opacity: 1, offset: 0.1 },
@@ -416,8 +367,7 @@
                 duration: 3000,
                 easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)'
             });
-
-            // Animate the trail
+    
             trail.animate([
                 { width: '0' },
                 { width: '100%' }
@@ -425,8 +375,7 @@
                 duration: 3000,
                 easing: 'linear'
             });
-
-            // Animate the text
+    
             text.animate([
                 { opacity: 0, transform: 'translate(-50%, -50%) scale(0.8)' },
                 { opacity: 1, transform: 'translate(-50%, -50%) scale(1)', offset: 0.2 },
@@ -436,19 +385,18 @@
                 duration: 3000,
                 easing: 'ease-in-out'
             });
-
-            // Hide the acknowledgment after the animation
+    
             setTimeout(() => {
                 acknowledgment.style.display = 'none';
             }, 3000);
         }
-    </script>
-    <script>
+    
         document.addEventListener('DOMContentLoaded', function() {
             const subscribeForm = document.getElementById('subscribeForm');
             const subscribeAcknowledgment = document.getElementById('subscribeAcknowledgment');
-
+    
             subscribeForm.addEventListener('submit', function(e) {
+                console.log('Form submit event triggered');
                 e.preventDefault();
                 if (subscribeForm.checkValidity()) {
                     showSubscribeAcknowledgment();
@@ -458,16 +406,15 @@
                 }
             });
         });
-
+    
         function showSubscribeAcknowledgment() {
             const acknowledgment = document.getElementById('subscribeAcknowledgment');
             acknowledgment.style.display = 'block';
-            
-            // Hide the acknowledgment after 3 seconds
+    
             setTimeout(() => {
                 acknowledgment.style.display = 'none';
             }, 3000);
         }
     </script>
-</body>
+    </body>
 </html>
