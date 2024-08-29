@@ -1,3 +1,6 @@
+from django.template import Template, Context
+from django.utils import timezone
+
 def get_started_email_template(name, email, company, industry, message):
     return f"""
 <!DOCTYPE html>
@@ -287,3 +290,71 @@ def data_revolution_email_template(name, email, company, job_title, message):
 </body>
 </html>
     """
+
+
+def subscription_email_template(email):
+    template = Template("""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Newsletter Subscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        .subscription-info {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            font-size: 0.8em;
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>New Newsletter Subscription</h1>
+    
+    <p>Dear Bridges DATA Services Team,</p>
+    
+    <p>We have a new subscriber to our newsletter! Here are the details:</p>
+    
+    <div class="subscription-info">
+        <h2>Subscription Details</h2>
+        <p><strong>Email:</strong> {{ email }}</p>
+        <p><strong>Date:</strong> {{ current_date }}</p>
+    </div>
+    
+    <p>Please ensure this email is added to our newsletter distribution list.</p>
+    
+    <p>Best regards,<br>Bridges DATA Services Auto-Notification System</p>
+    
+    <div class="footer">
+        <p>This email was automatically generated from a website subscription. Please do not reply directly to this email.</p>
+    </div>
+</body>
+</html>
+    """)
+    
+    context = Context({
+        'email': email,
+        'current_date': timezone.now().strftime("%B %d, %Y %H:%M:%S")
+    })
+    
+    return template.render(context)

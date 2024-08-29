@@ -13,5 +13,7 @@ urlpatterns = [
     path('submit-form/', views.submit_form, name='submit_form'),
     path('get-started-submit/', views.get_started_submit, name='get_started_submit'),
     path('contact-submit/', views.contact_submit, name='contact_submit'),
+
+    path('subscribe/', views.subscribe_newsletter, name='subscribe_newsletter'),
     
 ]

@@ -6,29 +6,53 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 import json
 import logging
-from .utils import get_started_email_template, contact_email_template, data_revolution_email_template
+from .utils import get_started_email_template, contact_email_template, data_revolution_email_template, subscription_email_template
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from .forms import NewsletterSubscriptionForm
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from .models import NewsletterSubscription
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def landing_page(request):
-    return render(request, 'website/landing_page.html')
+    context = {
+        'newsletter_form': NewsletterSubscriptionForm(),
+    }
+    return render(request, 'website/landing_page.html', context)
 
 def about(request):
-    return render(request, 'website/about.html')
+    context = {
+        'newsletter_form': NewsletterSubscriptionForm(),
+    }
+    return render(request, 'website/about.html', context)   
 
 def services(request):
-    return render(request, 'website/services.html')
+    context = {
+        'newsletter_form': NewsletterSubscriptionForm(),
+    }
+    return render(request, 'website/services.html', context)
 
 def contact(request):
-    return render(request, 'website/contact.html')
+    context = {
+        'newsletter_form': NewsletterSubscriptionForm(),
+    }
+    return render(request, 'website/contact.html', context)
 
 def unleash_data(request):
-    return render(request, 'website/unleash_data.html')
+    context = {
+        'newsletter_form': NewsletterSubscriptionForm(),
+    }
+    return render(request, 'website/unleash_data.html', context)
 
 def get_started(request):
-    return render(request, 'website/get_started.html')
+    context = {
+        'newsletter_form': NewsletterSubscriptionForm(),
+    }
+    return render(request, 'website/get_started.html', context)
 
 @csrf_exempt
 def submit_form(request):
@@ -173,3 +197,40 @@ def contact_submit(request):
     
     logger.warning("Invalid request method")
     return JsonResponse({'success': False, 'error': 'Invalid request method'})
+
+
+def subscribe_newsletter(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        
+        if not email:
+            return JsonResponse({'status': 'error', 'message': 'Email is required.'})
+        
+        try:
+            validate_email(email)
+        except ValidationError:
+            return JsonResponse({'status': 'error', 'message': 'Invalid email address.'})
+        
+        try:
+            subscription, created = NewsletterSubscription.objects.get_or_create(email=email)
+            if created:
+                # Send email notification
+                email_subject = "New Newsletter Subscription"
+                email_message = subscription_email_template(email)
+                
+                send_mail(
+                    email_subject,
+                    '',  # Empty string for plain text content
+                    settings.DEFAULT_FROM_EMAIL,
+                    ['cloudythought9@gmail.com'],  # Replace with your admin email
+                    fail_silently=False,
+                    html_message=email_message
+                )
+                
+                return JsonResponse({'status': 'success', 'message': 'Successfully subscribed to the newsletter!'})
+            else:
+                return JsonResponse({'status': 'info', 'message': 'You are already subscribed to the newsletter.'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': 'An error occurred. Please try again.'})
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method.'})
