@@ -222,7 +222,7 @@ def subscribe_newsletter(request):
                     email_subject,
                     '',  # Empty string for plain text content
                     settings.DEFAULT_FROM_EMAIL,
-                    ['cloudythought9@gmail.com'],  # Replace with your admin email
+                    ['info@bridgesdata.ai'],  # Replace with your admin email
                     fail_silently=False,
                     html_message=email_message
                 )
