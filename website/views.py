@@ -86,7 +86,7 @@ def submit_form(request):
                 email_subject,
                 '',  # Empty string for plain text version
                 settings.DEFAULT_FROM_EMAIL,
-                ['info@bridgesdata.ai'],
+                [settings.DEFAULT_TO_EMAIL],
                 html_message=email_message,
                 fail_silently=False,
             )
@@ -135,7 +135,7 @@ def get_started_submit(request):
                 email_subject,
                 '',  # Empty string for plain text content
                 settings.DEFAULT_FROM_EMAIL,
-                ['info@bridgesdata.ai'],  # Replace with your admin email
+                [settings.DEFAULT_TO_EMAIL],  # Replace with your admin email
                 fail_silently=False,
                 html_message=email_message  # Use the HTML email template
             )
@@ -184,7 +184,7 @@ def contact_submit(request):
                 email_subject,
                 '',  # Empty string for plain text content
                 settings.DEFAULT_FROM_EMAIL,
-                ['info@bridgesdata.ai'],  # Replace with your admin email
+                [settings.DEFAULT_TO_EMAIL],  # Replace with your admin email
                 fail_silently=False,
                 html_message=email_message  # Use the HTML email template
             )
@@ -222,7 +222,7 @@ def subscribe_newsletter(request):
                     email_subject,
                     '',  # Empty string for plain text content
                     settings.DEFAULT_FROM_EMAIL,
-                    ['info@bridgesdata.ai'],  # Replace with your admin email
+                    [settings.DEFAULT_TO_EMAIL],  # Replace with your admin email
                     fail_silently=False,
                     html_message=email_message
                 )
